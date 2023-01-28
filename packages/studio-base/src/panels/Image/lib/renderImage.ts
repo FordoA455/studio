@@ -139,6 +139,10 @@ function decodeMessageToBitmap(
         case "yuv422":
           decodeYUV(rawData as unknown as Int8Array, width, height, image.data);
           break;
+        // same thing as yuv422, but a distinct decoding from yuv422 and yuyv
+        case "uyuv":
+          decodeYUV(rawData as unknown as Int8Array, width, height, image.data);
+          break;
         // change name in the future
         case "yuyv":
           decodeYUYV(rawData as unknown as Int8Array, width, height, image.data);

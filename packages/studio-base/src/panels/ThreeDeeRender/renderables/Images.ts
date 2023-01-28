@@ -663,6 +663,10 @@ function rawImageToDataTexture(
     case "yuv422":
       decodeYUV(image.data as Int8Array, width, height, output.image.data);
       break;
+    // same thing as yuv422, but a distinct decoding from yuv422 and yuyv
+    case "uyuv":
+      decodeYUV(image.data as Int8Array, width, height, output.image.data);
+      break;
     // change name in the future
     case "yuyv":
       decodeYUYV(image.data as Int8Array, width, height, output.image.data);
