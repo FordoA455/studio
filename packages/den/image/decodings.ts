@@ -12,23 +12,24 @@
 //   You may not use this file except in compliance with the License.
 
 function yuvToRGBA8(
-  y1: number, 
-  u: number, 
-  y2: number, 
-  v: number, 
-  c: number, 
-  output: Uint8ClampedArray): void {
-    // rgba
-    output[c] = y1 + 1.402 * v;
-    output[c + 1] = y1 - 0.34414 * u - 0.71414 * v;
-    output[c + 2] = y1 + 1.772 * u;
-    output[c + 3] = 255;
+  y1: number,
+  u: number,
+  y2: number,
+  v: number,
+  c: number,
+  output: Uint8ClampedArray,
+): void {
+  // rgba
+  output[c] = y1 + 1.402 * v;
+  output[c + 1] = y1 - 0.34414 * u - 0.71414 * v;
+  output[c + 2] = y1 + 1.772 * u;
+  output[c + 3] = 255;
 
-    // rgba
-    output[c + 4] = y2 + 1.402 * v;
-    output[c + 5] = y2 - 0.34414 * u - 0.71414 * v;
-    output[c + 6] = y2 + 1.772 * u;
-    output[c + 7] = 255;
+  // rgba
+  output[c + 4] = y2 + 1.402 * v;
+  output[c + 5] = y2 - 0.34414 * u - 0.71414 * v;
+  output[c + 6] = y2 + 1.772 * u;
+  output[c + 7] = 255;
 }
 
 export function decodeYUV(
@@ -67,7 +68,7 @@ export function decodeYUYV(
   const max = height * width;
   for (let r = 0; r <= max; r += 2) {
     const y1 = yuyv[off]!;
-    const u = yuyv[off+1]! - 128;
+    const u = yuyv[off + 1]! - 128;
     const y2 = yuyv[off + 2]!;
     const v = yuyv[off + 3]! - 128;
     yuvToRGBA8(y1, u, y2, v, c, output);
