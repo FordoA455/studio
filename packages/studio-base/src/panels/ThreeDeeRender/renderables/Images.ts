@@ -19,6 +19,7 @@ import {
   decodeBayerGRBG8,
   decodeMono8,
   decodeMono16,
+  decodeYUYV,
 } from "@foxglove/den/image";
 import Logger from "@foxglove/log";
 import { toNanoSec } from "@foxglove/rostime";
@@ -661,6 +662,10 @@ function rawImageToDataTexture(
   switch (encoding) {
     case "yuv422":
       decodeYUV(image.data as Int8Array, width, height, output.image.data);
+      break;
+    // change name in the future
+    case "yuyv":
+      decodeYUYV(image.data as Int8Array, width, height, output.image.data);
       break;
     case "rgb8":
       decodeRGB8(rawData, width, height, output.image.data);
